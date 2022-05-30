@@ -2,32 +2,73 @@ import random
 
 
 def lotto_numbers():
-    generated = []
-    for num in range(7):
-        random_num = random.randrange(1,50)
-        generated.append(random_num)
+    generated = random.sample(range(1, 50), 7)
+    generated.sort()
     return generated
 
 
 def guessed_numbers():
-    user_numbers = list(input("Pick 7 numbers between 1 and 50: "))
+    picks = 7
+    i = 0
+    user_numbers = []
+    while i < picks:
+        entries = int(input("Pick 7 numbers between 1 and 50. Pick #{0}: ".format(i + 1)))
+        if entries < 0 or entries > 50:
+            print("That's not a valid number. Pick a number between 1 and 50.")
+        else:
+            user_numbers.append(entries)
+            user_numbers.sort()
+            i = i + 1
     return user_numbers
 
 
-def check_numbers(generated, user_numbers):
-    correct = []
-    for num in generated:
-        if num in user_numbers:
-            if num in generated:
-                correct.append(num)
+def check_numbers(winning_numbers, guesses):
+    score = 0
+    for element in winning_numbers:
+        if element in guesses:
+            score += 1
+    return score
+
+
+def winning_payout(win):
+    if win == 7:
+        return "You have won $1,000,000!"
+    elif win == 6:
+        return "You have won $50,000!"
+    elif win == 5:
+        return "You have won $10,000!"
+    elif win == 4:
+        return "You have won $5,000!"
+    elif win == 3:
+        return "You have won $1,000!"
+    elif win == 2:
+        return "You have won $100!"
+    elif win == 1:
+        return "You have won $50!"
+    else:
+        return "Sorry you didn't win. Try playing again."
 
 
 def main():
-    guesses = guessed_numbers()
-    winning_numbers = lotto_numbers()
-    win = check_numbers(winning_numbers, guesses)
-    print("The winning lotto numbers are " + str(winning_numbers))
-    print("You guessed " + " "  + str(win) + " correctly")
+    print("Welcome to the lottery game \n Let's GO!!!!!")
+    try:
+        guesses = guessed_numbers()
+        winning_numbers = lotto_numbers()
+        win = check_numbers(winning_numbers, guesses)
+        payout = winning_payout(win)
+        print("You guessed: " + str(guesses))
+        print("The winning lotto numbers are " + str(winning_numbers))
+        print("You guessed " + str(win) + " correctly")
+        print(payout)
+    finally:
+        while True:
+            play_again = input("Would you like to play again? (Y/N) ")
+            if play_again.lower() == "y":
+                main()
+            if play_again.lower() != "n":
+                print("Unexpected answer. Try again. Y or N?")
+            else:
+                break
 
 
 if __name__ == '__main__':
