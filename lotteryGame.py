@@ -1,12 +1,14 @@
 # A Lottery game including a $1,000,000 payout
 import random
 
+
 # Generates 7 lottery random numbers from a range between 1 and 50 and sorts them into order.
 # Used that random.sample function so the game will not produce duplicates
 def lotto_numbers():
     generated = random.sample(range(1, 50), 7)
     generated.sort()
     return generated
+
 
 # Asks for user's numbers and sorts into a list. With exception control
 def guessed_numbers():
@@ -23,6 +25,7 @@ def guessed_numbers():
             i = i + 1
     return user_numbers
 
+
 # Checks user numbers against generated numbers and scores how many were correct.
 def check_numbers(winning_numbers, guesses):
     score = 0
@@ -30,6 +33,7 @@ def check_numbers(winning_numbers, guesses):
         if element in guesses:
             score += 1
     return score
+
 
 # Check score against payout table.
 def winning_payout(win):
@@ -50,6 +54,7 @@ def winning_payout(win):
     else:
         return "Sorry you didn't win. Try playing again."
 
+
 # Main game loop
 def main():
     print("Welcome to the lottery game \n Let's GO!!!!!")
@@ -66,7 +71,7 @@ def main():
             play_again = input("Would you like to play again? (Y/N) ")
             if play_again.lower() == "y":
                 main()
-            if play_again.lower() != "n":
+            elif play_again.lower() != "n":
                 print("Unexpected answer. Try again. Y or N?")
             else:
                 break
