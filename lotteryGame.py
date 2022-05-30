@@ -58,10 +58,9 @@ def main():
         winning_numbers = lotto_numbers()
         win = check_numbers(winning_numbers, guesses)
         payout = winning_payout(win)
-        print("You guessed: " + str(guesses))
-        print("The winning lotto numbers are " + str(winning_numbers))
-        print("You guessed " + str(win) + " correctly")
-        print(payout)
+        print("You guessed: " + str(guesses) + "\nThe winning lotto numbers are "
+              + str(winning_numbers) + "\nYou guessed " + str(win) + " correctly \n" + payout)
+
     finally:
         while True:
             play_again = input("Would you like to play again? (Y/N) ")
