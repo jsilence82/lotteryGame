@@ -13,7 +13,7 @@ def guessed_numbers():
     user_numbers = []
     while i < picks:
         entries = int(input("Pick 7 numbers between 1 and 50. Pick #{0}: ".format(i + 1)))
-        if entries < 0 or entries > 50:
+        if entries <= 0 or entries > 50:
             print("That's not a valid number. Pick a number between 1 and 50.")
         else:
             user_numbers.append(entries)
