@@ -10,7 +10,8 @@ def lotto_numbers():
     return generated
 
 
-# Asks for user's numbers and sorts into a list. With exception control
+# Asks for user's numbers. Returns user numbers as a list.
+# User control for value exceptions and picking the same number.
 def guessed_numbers():
     picks = 7
     i = 0
@@ -23,6 +24,8 @@ def guessed_numbers():
             entries = int(input("Pick #{0}: ".format(i + 1)))
             if entries <= 0 or entries > 50:
                 print("That's not a valid number. Pick a number between 1 and 50.")
+            elif entries in user_numbers:
+                print("You already picked that number. Try another.")
             else:
                 user_numbers.append(entries)
                 user_numbers.sort()
@@ -33,7 +36,8 @@ def guessed_numbers():
     return user_numbers
 
 
-# Checks user numbers against generated numbers and scores how many were correct.
+# Checks user numbers against generated numbers, scores how many were correct.
+# Returns both the score and the numbers correctly guessed.
 def check_numbers(winning_numbers, guesses):
     correct = []
     score = 0
