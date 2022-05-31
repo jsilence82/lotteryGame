@@ -19,13 +19,17 @@ def guessed_numbers():
     print("Pick 7 numbers between 1 and 50.".center(50))
 
     while i < picks:
-        entries = int(input("Pick #{0}: ".format(i + 1)))
-        if entries <= 0 or entries > 50:
-            print("That's not a valid number. Pick a number between 1 and 50.")
-        else:
-            user_numbers.append(entries)
-            user_numbers.sort()
-            i = i + 1
+        try:
+            entries = int(input("Pick #{0}: ".format(i + 1)))
+            if entries <= 0 or entries > 50:
+                print("That's not a valid number. Pick a number between 1 and 50.")
+            else:
+                user_numbers.append(entries)
+                user_numbers.sort()
+                i = i + 1
+        except ValueError:
+            print("Oops. Please enter a valid number.")
+
     return user_numbers
 
 
