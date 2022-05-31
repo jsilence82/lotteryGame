@@ -41,9 +41,9 @@ def guessed_numbers():
 def check_numbers(winning_numbers, guesses):
     correct = []
     score = 0
-    for element in winning_numbers:
-        if element in guesses:
-            correct.append(element)
+    for number in winning_numbers:
+        if number in guesses:
+            correct.append(number)
             score += 1
     return score, correct
 
