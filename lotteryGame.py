@@ -5,7 +5,7 @@ import random
 # Generates 7 lottery random numbers from a range between 1 and 50 and sorts them into order.
 # Used that random.sample function so the game will not produce duplicates
 def lotto_numbers():
-    generated = random.sample(range(1, 50), 7)
+    generated = random.sample(range(1, 51), 7)
     generated.sort()
     return generated
 
