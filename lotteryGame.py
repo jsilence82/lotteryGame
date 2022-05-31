@@ -70,7 +70,7 @@ def winning_payout(win):
 
 # Main game loop
 def main():
-    header = "".center(50, "#")
+    header = "".center(60, "#")
     print(header, "\n")
     print("\tWelcome to the lottery game\t".center(50, "#"))
     print("\tLet's Go!\t".center(48, "#"), "\n")
@@ -80,15 +80,15 @@ def main():
         winning_numbers = lotto_numbers()
         win = check_numbers(winning_numbers, guesses)
         payout = winning_payout(win[0])
-        print(header, "\nYou guessed: ", str(guesses), "\nThe winning lotto numbers are ",
-              str(winning_numbers), "\nYou hit the numbers: ", str(win[1]), "\nYou guessed ",
-              str(win[0]), "correctly")
+        print(" ", "\n" + header, "\nYou guessed: ", str(guesses), "\n\nThe winning lotto numbers are ",
+              str(winning_numbers), "\n\nYou hit the numbers: ", str(win[1]), "\n\nYou guessed ",
+              str(win[0]), "correctly.", "\n")
         print(payout)
         print(header)
 
     finally:
         while True:
-            play_again = input("Would you like to play again? (Y/N) ")
+            play_again = input("\nWould you like to play again? (Y/N) ")
             if play_again.lower() == "y":
                 main()
             elif play_again.lower() != "n":
