@@ -15,8 +15,11 @@ def guessed_numbers():
     picks = 7
     i = 0
     user_numbers = []
+
+    print("Pick 7 numbers between 1 and 50.".center(50))
+
     while i < picks:
-        entries = int(input("Pick 7 numbers between 1 and 50. Pick #{0}: ".format(i + 1)))
+        entries = int(input("Pick #{0}: ".format(i + 1)))
         if entries <= 0 or entries > 50:
             print("That's not a valid number. Pick a number between 1 and 50.")
         else:
@@ -28,11 +31,13 @@ def guessed_numbers():
 
 # Checks user numbers against generated numbers and scores how many were correct.
 def check_numbers(winning_numbers, guesses):
+    correct = []
     score = 0
     for element in winning_numbers:
         if element in guesses:
+            correct.append(element)
             score += 1
-    return score
+    return score, correct
 
 
 # Check score against payout table.
@@ -57,14 +62,21 @@ def winning_payout(win):
 
 # Main game loop
 def main():
-    print("Welcome to the lottery game \n Let's GO!!!!!")
+    header = "".center(50, "#")
+    print(header, "\n")
+    print("\tWelcome to the lottery game\t".center(50, "#"))
+    print("\tLet's Go!\t".center(48, "#"), "\n")
+    print(header)
     try:
         guesses = guessed_numbers()
         winning_numbers = lotto_numbers()
         win = check_numbers(winning_numbers, guesses)
-        payout = winning_payout(win)
-        print("You guessed: " + str(guesses) + "\nThe winning lotto numbers are "
-              + str(winning_numbers) + "\nYou guessed " + str(win) + " correctly \n" + payout)
+        payout = winning_payout(win[0])
+        print(header, "\nYou guessed: ", str(guesses), "\nThe winning lotto numbers are ",
+              str(winning_numbers), "\nYou hit the numbers: ", str(win[1]), "\nYou guessed ",
+              str(win[0]), "correctly")
+        print(payout)
+        print(header)
 
     finally:
         while True:
