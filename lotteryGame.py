@@ -1,11 +1,17 @@
 # A Lottery game including a $1,000,000 payout
 import random
+import time
 
 
 # Generates 7 lottery random numbers from a range between 1 and 50 and sorts them into order.
 # Used that random.sample function so the game will not produce duplicates
 def lotto_numbers():
     generated = random.sample(range(1, 51), 7)
+    time.sleep(1)
+    print("Here comes the winning numbers...")
+    for x in generated:
+        time.sleep(1)
+        print("Drawing... ", x)
     generated.sort()
     return generated
 
