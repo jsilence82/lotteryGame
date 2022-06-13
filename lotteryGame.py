@@ -74,9 +74,13 @@ def winning_payout(win):
     else:
         return "Sorry you didn't win. Try playing again."
 
-def mapBitToChar(im, col, row):
-    if im.getpixel((col, row)): return ' '
-    else: return '#'
+
+def ascii_art(im, col, row):
+    if im.getpixel((col, row)):
+        return ' '
+    else:
+        return '#'
+
 
 # Main game loop
 def main():
@@ -85,10 +89,10 @@ def main():
     size = font.getsize(show_text)
     image = Image.new('1', size, 1)
     draw = ImageDraw.Draw(image)
-    draw.text((0,0), show_text, font=font)
+    draw.text((0, 0), show_text, font=font)
 
     for r in range(size[1]):
-        print(''.join([mapBitToChar(image, c, r) for c in range(size[0])]))
+        print(''.join([ascii_art(image, c, r) for c in range(size[0])]))
 
     header = "".center(60, "#")
     print("\n")
@@ -116,5 +120,6 @@ def main():
                 print("Unexpected answer. Try again. Y or N?")
             else:
                 break
+
 
 main()
