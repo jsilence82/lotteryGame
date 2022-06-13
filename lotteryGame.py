@@ -1,6 +1,7 @@
 # A Lottery game including a $1,000,000 payout
 import random
 import time
+from PIL import Image, ImageFont, ImageDraw
 
 
 # Generates 7 lottery random numbers from a range between 1 and 50 and sorts them into order.
@@ -73,13 +74,27 @@ def winning_payout(win):
     else:
         return "Sorry you didn't win. Try playing again."
 
+def mapBitToChar(im, col, row):
+    if im.getpixel((col, row)): return ' '
+    else: return '#'
 
 # Main game loop
 def main():
+    show_text = 'LOTTERY'
+    font = ImageFont.truetype('arialbd.ttf', 15)
+    size = font.getsize(show_text)
+    image = Image.new('1', size, 1)
+    draw = ImageDraw.Draw(image)
+    draw.text((0,0), show_text, font=font)
+
+    for r in range(size[1]):
+        print(''.join([mapBitToChar(image, c, r) for c in range(size[0])]))
+
     header = "".center(60, "#")
-    print(header, "\n")
+    print("\n")
+    print(header)
     print("\tWelcome to the lottery game\t".center(50, "#"))
-    print("\tLet's Go!\t".center(48, "#"), "\n")
+    print("\tGood Luck!\t".center(48, "#"), "\n")
     print(header)
     try:
         guesses = guessed_numbers()
